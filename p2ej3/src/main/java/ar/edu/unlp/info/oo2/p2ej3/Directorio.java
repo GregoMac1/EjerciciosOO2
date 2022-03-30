@@ -2,6 +2,7 @@ package ar.edu.unlp.info.oo2.p2ej3;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Directorio implements Estructura{
@@ -33,14 +34,17 @@ public class Directorio implements Estructura{
 	}
 	
 	public Archivo archivoMasGrande() {
-		return this.estructuras.stream().
+		return (Archivo)this.estructuras.stream().
 				filter(e -> e.esArchivo()).
-				max((Archivo a1, Archivo a2) -> a1.getTamano() > a2.getTamano()).
+				max(Comparator.comparing(Estructura::getTamano)).
 				orElse(null);
 	}
 	
 	public Archivo archivoMasNuevo() {
-		return null;
+		return (Archivo)this.estructuras.stream().
+				filter(e -> e.esArchivo()).
+				max(Comparator.comparing(Estructura::getFecha)). //no me acuerdo como se comparaban fechas
+				orElse(null);
 	}
 
 	public String getNombre() {
