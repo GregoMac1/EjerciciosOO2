@@ -21,12 +21,16 @@ public class Usuario {
 	
 	public Tweet hacerRetweet(String texto, Tweet origen) {
 		Tweet t = new Tweet(texto, origen);
+		origen.agregarRetweeteado(t);
 		this.tweets.add(t);
 		return t;
 	}
 	
 	public void eliminarTweets() {
-		tweets.clear(); //faltaria borrar cada tweet pero no se como
+		for (Tweet tweet : tweets) {
+			tweet.eliminarRetweeteados();
+		}
+		this.tweets.clear();
 	}
 
 	public String getScreenName() {
