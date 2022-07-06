@@ -4,10 +4,10 @@ import java.util.Collection;
 import java.util.List;
 
 public class DatabaseRealAccessProxy implements DatabaseAccess{
-	private DatabaseAccess database;
+	private DatabaseRealAccess database;
 	private boolean isLogged;
 
-	public DatabaseRealAccessProxy(DatabaseAccess database) {
+	public DatabaseRealAccessProxy(DatabaseRealAccess database) {
 		this.database = database;
 	}
 
